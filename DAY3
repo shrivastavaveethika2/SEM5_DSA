@@ -1,0 +1,235 @@
+CODE 1:
+def isValid(s: str) -> bool:
+ 
+    stack = []
+    
+
+    mapping = {")": "(", "}": "{", "]": "["}
+    
+    for char in s:
+ 
+        if char in mapping:
+            
+            top_element = stack.pop() if stack else '#'
+            
+            if mapping[char] != top_element:
+                return False
+        else:
+       
+            stack.append(char)
+            
+    return not stack
+
+
+if __name__ == "__main__":
+    import sys
+  
+    input_string = sys.stdin.read().strip()
+
+    if isValid(input_string):
+        print("true")
+    else:
+        print("false")
+=================================================================================================================================================================
+CODE 2 
+mport sys
+
+def largest_rectangular_area():
+    # Read all inp
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+    
+    n = int(input_data[0])
+    heights = [int(x) for x in input_data[1:n+1]]
+    
+    stack = []
+    max_area = 0
+    i = 0
+    
+    while i < n:
+        # If stack is empty or current height is greater than or equal to stack top
+        if not stack or heights[i] >= heights[stack[-1]]:
+            stack.append(i)
+            i += 1
+        else:
+            # Pop the top element
+            top_of_stack = stack.pop()
+            # Calculate area with heights[top_of_stack] as the smallest height
+            width = i if not stack else i - stack[-1] - 1
+            area = heights[top_of_stack] * width
+            max_area = max(max_area, area)
+            
+    # Pop the remaining bars from the stack
+    while stack:
+        top_of_stack = stack.pop()
+        width = i if not stack else i - stack[-1] - 1
+        area = heights[top_of_stack] * width
+        max_area = max(max_area, area)
+        
+    print(max_area)
+
+if __name__ == '__main__':
+    largest_rectangular_area()
+===================================================================================================================================================================
+CODE 3
+
+import sys
+class Queue:
+
+    # constructor
+    def __init__(self, queueSize):
+        self.queueSize = queueSize
+        self.myQueue = []
+
+    # is full condition check
+    def isFull(self):
+        if len(self.myQueue) == self.queueSize:
+            return True
+        else:
+            return False
+
+    # is empty condition check
+    def isEmpty(self):
+        if self.myQueue == []:
+            return True
+        else:
+            return False
+
+    # Enqueue operation
+    def enqueue(self, value):
+        if self.isFull():
+            print("Queue is Full")
+        else:
+            self.myQueue.append(value)
+            print("Element inserted:", value)
+
+    # Dequeue operation
+    def dequeue(self):
+        if self.isEmpty():
+            print("Queue is Empty")
+        else:
+            value = self.myQueue.pop(0)
+            print("Element deleted:", value)
+
+    # Peek operation
+    def peek(self):
+        if self.isEmpty():
+            print("Queue is Empty")
+        else:
+            print("Front element:", self.myQueue[0])
+
+    # Delete queue
+    def deleteQueue(self):
+        self.myQueue = []
+        print("Queue deleted")
+
+    # Display queue
+    def display(self):
+        if self.isEmpty():
+            print("Queue is Empty")
+        else:
+            print("Queue:", self.myQueue)
+
+size = int(input("Enter the size of queue: "))
+obj = Queue(size)
+
+while True:
+    print("\n1. Enqueue operation")
+    print("2. Dequeue operation")
+    print("3. Peek operation")
+    print("4. isFull")
+    print("5. isEmpty")
+    print("6. Delete Entire Queue")
+    print("7. Display Queue")
+    print("8. Exit operation")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        value = int(input("Enter the value to insert in queue: "))
+        obj.enqueue(value)
+
+    elif choice == 2:
+        obj.dequeue()
+
+    elif choice == 3:
+        obj.peek()
+
+    elif choice == 4:
+        if obj.isFull():
+            print("Queue is Full")
+        else:
+            print("Queue is not Full")
+
+    elif choice == 5:
+        if obj.isEmpty():
+            print("Queue is Empty")
+        else:
+            print("Queue is not Empty")
+
+    elif choice == 6:
+        obj.deleteQueue()
+
+    elif choice == 7:
+        obj.display()
+
+    elif choice == 8:
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice")
+================================================================================================================================================================
+CODE 4'
+class Student:
+    def __init__(self, rollno):
+        self.rollno = rollno
+
+    def display(self):
+        print(self.rollno)
+
+obj1 = Student(100)
+obj2 = Student(101)
+obj3 = Student(102)
+obj1.display()
+obj2.display()
+obj3.display()
+print()
+obj1.rollno = 111
+obj1.display()
+obj2.display()
+obj3.display()
+==================================================================================================================================================================
+CODE 5
+class College:
+
+    def __init__(self, collegename):
+        self.collegename = collegename
+
+    def display(self):
+        print(self.collegename)
+
+
+# Create three college objects
+obj1 = College("MIT")
+obj2 = College("Stanford")
+obj3 = College("Harvard")
+
+# Display initial names
+obj1.display()
+obj2.display()
+obj3.display()
+print()
+
+# Update the name of the first college
+obj1.collegename = "Oxford"
+
+# Display names after the update
+obj1.display()
+obj2.display()
+obj3.display()
+==================================================================================================================================================================
+
+
+
