@@ -1,0 +1,156 @@
+CODE 1 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+def reverse(head):
+    prev = None
+    curr = head
+
+    while curr:
+        next_node = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_node
+
+    return prev
+
+
+n = int(input())
+
+if n == 0:
+    print()
+else:
+    values = list(map(int, input().split()))
+
+    head = None
+    tail = None
+
+    for value in values:
+        new_node = Node(value)
+
+        if head is None:
+            head = new_node
+            tail = new_node
+        else:
+            tail.next = new_node
+            tail = new_node
+
+    head = reverse(head)
+
+    result = []
+    while head:
+        result.append(str(head.data))
+        head = head.next
+
+    print(" ".join(result))4
+
+=================================================================================================================================================================
+CODE 2
+
+class MyLinkedList:
+
+    class Node:
+        def __init__(self, data):
+            self.data = data
+            self.next = None
+
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def addLast(self, val):
+        new_node = self.Node(val)
+
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
+    def printAll(self):
+        current = self.head
+
+        while current is not None:
+            print(current.data, end=" ")
+            current = current.next
+
+
+n = int(input())
+
+values = list(map(int, input().split()))
+
+myList = MyLinkedList()
+
+for value in values:
+    myList.addLast(value)
+
+myList.printAll()
+=================================================================================================================================================================
+ CODE 4
+class Node:
+    # instance var
+    def __init__(self, data):   # H            T
+        self.data = data        #[10]->[20]->[30]
+        self.next = None
+    
+class Linkedlist:
+    def __init__(self):
+        self.head = None # represent the starting node
+        self.tail = None # represent the ending node
+        
+    # Add node in end
+    def addNodeEnd(self, value):
+        new_node = Node(value)
+        
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
+    # Display LinkedList
+    def displayLinkedList(self): 
+        while self.head != None: 
+            print("|",self.head.data,'|','->',end ='') 
+            self.head = self.head.next
+            
+    #add node in beginning
+    def addNodeBeginning(self, value):
+        new_node = Node(value)
+        # first we are checking if head is null so assign first node to head and tail
+
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+    
+    #Searching a node
+    def searchNode(self,target):
+        current = self.head
+        while self.head != None:
+            current = self.head
+            if current.data == target:
+                return True
+            current = current.next
+        return False
+        
+        
+linkedlistObj = Linkedlist()
+
+linkedlistObj.addNodeEnd(10)
+linkedlistObj.addNodeEnd(20)
+linkedlistObj.addNodeEnd(30)
+
+linkedlistObj.addNodeBeginning(40)
+
+linkedlistObj.searchNode(30)
+
+linkedlistObj.displayLinkedList()
+==================================================================================================================================================================
