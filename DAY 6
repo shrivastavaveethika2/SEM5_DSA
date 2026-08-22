@@ -1,0 +1,105 @@
+CODE 1
+
+n = int(input())
+intervals = []
+
+for _ in range(n):
+    start, end = map(int, input().split())
+    intervals.append((start, end))
+
+intervals.sort()
+
+merged = []
+
+for start, end in intervals:
+    if not merged or start > merged[-1][1]:
+        merged.append([start, end])
+    else:
+        merged[-1][1] = max(merged[-1][1], end)
+
+for start, end in merged:
+    print(start, end)
+==================================================================================================================================================================
+CODE 2
+class tree:
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+
+    def addChild(self, node):
+        self.children.append(node)
+
+    def printTree(self, level=0):
+        print("   " * level + self.data)
+        for child in self.children:
+            child.printTree(level + 1)
+
+
+
+rootObj = tree("drinks")
+
+hot = tree("hot")
+cold = tree("cold")
+
+rootObj.addChild(hot)
+rootObj.addChild(cold)
+
+tea = tree("tea")
+coffee = tree("coffee")
+
+hot.addChild(tea)
+hot.addChild(coffee)
+
+nonAlcoholic = tree("Non-Alcoholic")
+alcoholic = tree("Alcoholic")
+
+cold.addChild(nonAlcoholic)
+cold.addChild(alcoholic)
+
+rootObj.printTree()
+=================================================================================================================================================================
+CODE 3
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+
+    def addChild(self, node):
+        self.children.append(node)
+
+    def printTree(self, level=0):
+        print(" " * (level * 4) + self.data)
+
+        for child in self.children:
+            child.printTree(level + 1)
+
+
+
+N1 = Node("N1")
+N2 = Node("N2")
+N3 = Node("N3")
+N4 = Node("N4")
+N5 = Node("N5")
+N6 = Node("N6")
+N7 = Node("N7")
+N8 = Node("N8")
+N9 = Node("N9")
+N10 = Node("N10")
+
+
+N1.addChild(N2)
+N1.addChild(N8)
+
+N2.addChild(N3)
+N2.addChild(N6)
+
+N3.addChild(N4)
+N3.addChild(N5)
+
+N8.addChild(N9)
+N8.addChild(N10)
+
+
+N1.printTree()
+=================================================================================================================================================================
